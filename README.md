@@ -44,21 +44,30 @@ API_KEY=spotify123
 
 ## Captures
 
-Pendent d'afegir:
-
 - Pantalla de registre
+  
+  <img width="327" height="673" alt="image" src="https://github.com/user-attachments/assets/0f067031-d063-40d3-b3d3-2c8ef4993009" />
+
 - Pantalla de login
+  
+  <img width="325" height="671" alt="image" src="https://github.com/user-attachments/assets/e28986df-15e8-4fbb-ac9e-ade08d5a8044" />
+
 - Pantalla de llistat
+  
+  <img width="323" height="672" alt="image" src="https://github.com/user-attachments/assets/dd5cdbf7-12bc-4162-8de8-39341946c282" />
+
 - Pantalla de formulari POST
+  
+  <img width="325" height="672" alt="image" src="https://github.com/user-attachments/assets/fa1f2037-996b-4b1d-963a-5f179cfd3f51" />
+
 - Exemple de dades noves afegides al Google Sheets
+  
+  <img width="9887" height="512" alt="image" src="https://github.com/user-attachments/assets/c83c854e-a982-48c0-9c78-7f7371802d4f" />
+
 
 ## Video demo
 
-Pendent d'afegir l'enllac o el fitxer de la demo on es vegi:
-
-- La app Android
-- El Google Sheets
-- El flux de dades de GET i POST
+https://youtu.be/nBp1q518s6c
 
 ## Notes finals
 
