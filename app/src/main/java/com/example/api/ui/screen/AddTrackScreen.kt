@@ -1,6 +1,5 @@
 package com.example.api.ui.screen
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -81,7 +80,7 @@ fun AddTrackScreen(
                     onClick = onLogoutClick,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(text = "Tancar sessio")
+                    Text(text = "Tancar sessi\u00F3")
                 }
             }
         }
@@ -89,7 +88,7 @@ fun AddTrackScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Omple les dades basiques de la nova canco",
+            text = "Omple les dades b\u00E0siques de la nova can\u00E7\u00F3",
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -99,7 +98,7 @@ fun AddTrackScreen(
         FormField(
             value = uiState.trackName,
             onValueChange = onTrackNameChange,
-            label = "Nom de la canco"
+            label = "Nom de la can\u00E7\u00F3"
         )
 
         FormField(
@@ -111,20 +110,20 @@ fun AddTrackScreen(
         FormField(
             value = uiState.playlistGenre,
             onValueChange = onPlaylistGenreChange,
-            label = "Genere"
+            label = "G\u00E8nere"
         )
 
         FormField(
             value = uiState.trackAlbumReleaseDate,
             onValueChange = onTrackAlbumReleaseDateChange,
-            label = "Data album",
+            label = "Data de l'\u00E0lbum",
             supportingText = "Format YYYY-MM-DD"
         )
 
         FormField(
             value = uiState.trackAlbumName,
             onValueChange = onTrackAlbumNameChange,
-            label = "Nom album"
+            label = "Nom de l'\u00E0lbum"
         )
 
         FormField(
@@ -170,7 +169,7 @@ fun AddTrackScreen(
                     strokeWidth = 2.dp
                 )
             }
-            Text(text = if (uiState.isSaving) "Guardant..." else "Guardar canco")
+            Text(text = if (uiState.isSaving) "Guardant..." else "Guardar can\u00E7\u00F3")
         }
 
         Spacer(modifier = Modifier.height(24.dp))

@@ -50,7 +50,7 @@ class AddTrackViewModel : ViewModel() {
         val trackArtist = state.trackArtist.trim()
 
         when {
-            trackName.isEmpty() -> setError("Escriu el nom de la canco")
+            trackName.isEmpty() -> setError("Escriu el nom de la can\u00E7\u00F3")
             trackArtist.isEmpty() -> setError("Escriu l'artista")
             state.trackAlbumReleaseDate.isNotBlank() && !isValidIsoDate(state.trackAlbumReleaseDate.trim()) ->
                 setError("La data ha de tenir format YYYY-MM-DD")
@@ -79,7 +79,7 @@ class AddTrackViewModel : ViewModel() {
                         onFailure = { throwable ->
                             _uiState.value = state.copy(
                                 isSaving = false,
-                                errorMessage = throwable.message ?: "Error afegint la canco",
+                                errorMessage = throwable.message ?: "Error afegint la can\u00E7\u00F3",
                                 successMessage = null
                             )
                         }

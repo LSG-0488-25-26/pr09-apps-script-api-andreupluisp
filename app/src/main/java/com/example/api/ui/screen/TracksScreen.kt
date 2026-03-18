@@ -72,7 +72,7 @@ fun TracksScreen(
                 Spacer(modifier = Modifier.height(6.dp))
 
                 Text(
-                    text = "Cancons carregades: ${tracks.size}",
+                    text = "Can\u00E7ons carregades: ${tracks.size}",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
@@ -104,7 +104,7 @@ fun TracksScreen(
                     onClick = onLogout,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(text = "Tancar sessio")
+                    Text(text = "Tancar sessi\u00F3")
                 }
             }
         }
@@ -195,7 +195,7 @@ private fun TrackCard(track: Track) {
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 InfoPill(
-                    label = if (track.playlistGenre.isBlank()) "Sense genere" else track.playlistGenre
+                    label = if (track.playlistGenre.isBlank()) "Sense g\u00E8nere" else track.playlistGenre
                 )
                 InfoPill(
                     label = formatReleaseDate(track.trackAlbumReleaseDate)
@@ -205,7 +205,7 @@ private fun TrackCard(track: Track) {
             Spacer(modifier = Modifier.height(12.dp))
 
             Text(
-                text = "Album: ${track.trackAlbumName.ifBlank { "-" }}",
+                text = "\u00C0lbum: ${track.trackAlbumName.ifBlank { "-" }}",
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis

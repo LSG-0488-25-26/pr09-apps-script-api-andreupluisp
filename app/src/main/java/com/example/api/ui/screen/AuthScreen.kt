@@ -38,7 +38,7 @@ fun AuthScreen(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = if (uiState.isRegisterMode) "Registre local" else "Login local",
+            text = if (uiState.isRegisterMode) "Registre local" else "Inici de sessi\u00F3",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold
         )
@@ -119,9 +119,9 @@ fun AuthScreen(
         ) {
             Text(
                 text = if (uiState.isRegisterMode) {
-                    "Ja hi ha usuari guardat? Anar al login"
+                    "Ja hi ha un usuari guardat? Ves a l'inici de sessi\u00F3"
                 } else {
-                    "No hi ha usuari? Crear registre"
+                    "No hi ha cap usuari? Crear registre"
                 }
             )
         }

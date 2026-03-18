@@ -95,7 +95,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                     isLoggedIn = true,
                     currentUser = username,
                     errorMessage = null,
-                    successMessage = "Sessio iniciada"
+                    successMessage = "Sessi\u00F3 iniciada"
                 )
             }
         }
@@ -108,7 +108,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
             isRegisterMode = !repository.hasSavedUser(),
             isLoggedIn = false,
             currentUser = "",
-            successMessage = "Sessio tancada"
+            successMessage = "Sessi\u00F3 tancada"
         )
     }
 

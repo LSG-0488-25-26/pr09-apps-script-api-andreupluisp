@@ -73,7 +73,7 @@ fun SpotifyApp(
                         text = if (currentState.isLoggedIn) {
                             "Spotify tracks"
                         } else {
-                            "Login"
+                            "Inici de sessi\u00F3"
                         }
                     )
                 }
