@@ -37,6 +37,7 @@ fun AuthScreen(
             .padding(24.dp),
         verticalArrangement = Arrangement.Center
     ) {
+        // Titulo de la pantalla segun el modo (login o registro)
         Text(
             text = if (uiState.isRegisterMode) "Registre local" else "Inici de sessi\u00F3",
             style = MaterialTheme.typography.headlineMedium,
@@ -45,6 +46,7 @@ fun AuthScreen(
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        // Descripcion del almacenamiento
         Text(
             text = "Les credencials es guarden amb SharedPrefs dins del dispositiu",
             style = MaterialTheme.typography.bodyMedium
@@ -52,6 +54,7 @@ fun AuthScreen(
 
         Spacer(modifier = Modifier.height(24.dp))
 
+        // Campo para introducir el nombre de usuario
         OutlinedTextField(
             value = uiState.username,
             onValueChange = onUsernameChange,
@@ -62,6 +65,7 @@ fun AuthScreen(
 
         Spacer(modifier = Modifier.height(12.dp))
 
+        // Campo para introducir la contraseña
         OutlinedTextField(
             value = uiState.password,
             onValueChange = onPasswordChange,
@@ -71,6 +75,7 @@ fun AuthScreen(
             singleLine = true
         )
 
+        // Campo para confirmar contraseña, solo visible en modo registro
         if (uiState.isRegisterMode) {
             Spacer(modifier = Modifier.height(12.dp))
 
@@ -84,6 +89,7 @@ fun AuthScreen(
             )
         }
 
+        // Mensajes de error si los hay
         uiState.errorMessage?.let { message ->
             Spacer(modifier = Modifier.height(12.dp))
             Text(
@@ -93,6 +99,7 @@ fun AuthScreen(
             )
         }
 
+        // Mensajes de exito si los hay
         uiState.successMessage?.let { message ->
             Spacer(modifier = Modifier.height(12.dp))
             Text(
@@ -104,6 +111,7 @@ fun AuthScreen(
 
         Spacer(modifier = Modifier.height(20.dp))
 
+        // Boton principal de accion (Entrar o Registrar)
         Button(
             onClick = if (uiState.isRegisterMode) onRegisterClick else onLoginClick,
             modifier = Modifier.fillMaxWidth()
@@ -113,6 +121,7 @@ fun AuthScreen(
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        // Boton para cambiar entre modo login y modo registro
         TextButton(
             onClick = if (uiState.isRegisterMode) onShowLoginClick else onShowRegisterClick,
             modifier = Modifier.fillMaxWidth()

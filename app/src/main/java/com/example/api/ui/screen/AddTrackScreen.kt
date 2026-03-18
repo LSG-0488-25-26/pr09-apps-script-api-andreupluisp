@@ -45,6 +45,7 @@ fun AddTrackScreen(
             .verticalScroll(rememberScrollState())
             .padding(16.dp)
     ) {
+        // Cabecera con informacion del usuario y navegacion
         Surface(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(28.dp),
@@ -95,24 +96,28 @@ fun AddTrackScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Campo para añadir el nombre de la cancion
         FormField(
             value = uiState.trackName,
             onValueChange = onTrackNameChange,
             label = "Nom de la can\u00E7\u00F3"
         )
 
+        // Campo para añadir el artista
         FormField(
             value = uiState.trackArtist,
             onValueChange = onTrackArtistChange,
             label = "Artista"
         )
 
+        // Campo para añadir el genero
         FormField(
             value = uiState.playlistGenre,
             onValueChange = onPlaylistGenreChange,
             label = "G\u00E8nere"
         )
 
+        // Campos para el album
         FormField(
             value = uiState.trackAlbumReleaseDate,
             onValueChange = onTrackAlbumReleaseDateChange,
@@ -126,18 +131,21 @@ fun AddTrackScreen(
             label = "Nom de l'\u00E0lbum"
         )
 
+        // Campo para añadir la popularidad
         FormField(
             value = uiState.trackPopularity,
             onValueChange = onTrackPopularityChange,
             label = "Popularitat"
         )
 
+        // Campo para añadir la uri de spotify
         FormField(
             value = uiState.uri,
             onValueChange = onUriChange,
             label = "Uri spotify"
         )
 
+        // Seccion de mensajes de error o exito
         uiState.errorMessage?.let { message ->
             Spacer(modifier = Modifier.height(12.dp))
             Text(
@@ -156,6 +164,7 @@ fun AddTrackScreen(
 
         Spacer(modifier = Modifier.height(20.dp))
 
+        // Boton para guardar la cancion
         Button(
             onClick = onSaveClick,
             enabled = !uiState.isSaving,
