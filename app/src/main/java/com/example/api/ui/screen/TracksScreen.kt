@@ -49,6 +49,7 @@ fun TracksScreen(
     ) {
         Spacer(modifier = Modifier.height(12.dp))
 
+        // Sección de información del usuario y contador de tracks
         Surface(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(28.dp),
@@ -79,6 +80,7 @@ fun TracksScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+                // Botones de acción: añadir nueva canción o recargar lista
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -100,6 +102,7 @@ fun TracksScreen(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
+                // Botón para cerrar la sesión actual
                 OutlinedButton(
                     onClick = onLogout,
                     modifier = Modifier.fillMaxWidth()
@@ -111,12 +114,14 @@ fun TracksScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Título de la sección de la lista
         Text(
             text = "Llista completa de tracks",
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.SemiBold
         )
 
+        // Visualización de errores si ocurren durante la carga
         if (error != null) {
             Spacer(modifier = Modifier.height(12.dp))
             Text(
@@ -128,6 +133,7 @@ fun TracksScreen(
 
         Spacer(modifier = Modifier.height(12.dp))
 
+        // Control de estados de carga y visualización de la lista
         if (isLoading) {
             Box(
                 modifier = Modifier.fillMaxSize(),
@@ -135,7 +141,20 @@ fun TracksScreen(
             ) {
                 CircularProgressIndicator()
             }
+        } else if (tracks.isEmpty() && error == null) {
+            // Mensaje informativo si no hay datos para mostrar
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "No s'han trobat cançons",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         } else {
+            // Lista scrollable con los tracks obtenidos de la API
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(bottom = 24.dp),
@@ -154,6 +173,7 @@ fun TracksScreen(
 
 @Composable
 private fun TrackCard(track: Track) {
+    // Tarjeta individual para cada canción
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
@@ -168,6 +188,7 @@ private fun TrackCard(track: Track) {
                 verticalAlignment = Alignment.Top
             ) {
                 Column(modifier = Modifier.weight(1f)) {
+                    // Nombre de la canción y artista
                     Text(
                         text = track.trackName.ifBlank { "Sense nom" },
                         style = MaterialTheme.typography.titleMedium,
@@ -185,11 +206,13 @@ private fun TrackCard(track: Track) {
                     )
                 }
 
+                // Indicador de popularidad
                 PopularityBadge(value = track.trackPopularity.ifBlank { "-" })
             }
 
             Spacer(modifier = Modifier.height(14.dp))
 
+            // Etiquetas de género y fecha de lanzamiento
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -204,6 +227,7 @@ private fun TrackCard(track: Track) {
 
             Spacer(modifier = Modifier.height(12.dp))
 
+            // Nombre del álbum
             Text(
                 text = "\u00C0lbum: ${track.trackAlbumName.ifBlank { "-" }}",
                 style = MaterialTheme.typography.bodyMedium,
@@ -216,6 +240,7 @@ private fun TrackCard(track: Track) {
 
 @Composable
 private fun PopularityBadge(value: String) {
+    // Badge con estilo propio para la popularidad
     Surface(
         shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colorScheme.primary
