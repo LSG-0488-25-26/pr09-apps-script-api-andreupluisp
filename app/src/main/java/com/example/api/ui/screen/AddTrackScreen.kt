@@ -8,15 +8,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.api.ui.state.AddTrackUiState
@@ -43,29 +47,41 @@ fun AddTrackScreen(
             .verticalScroll(rememberScrollState())
             .padding(16.dp)
     ) {
-        Text(
-            text = "Usuari: $username",
-            style = MaterialTheme.typography.bodyMedium
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Row(
+        Surface(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            shape = RoundedCornerShape(24.dp),
+            tonalElevation = 2.dp
         ) {
-            Button(
-                onClick = onBackToListClick,
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(text = "Tornar")
-            }
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(
+                    text = "Usuari",
+                    style = MaterialTheme.typography.labelMedium
+                )
 
-            Button(
-                onClick = onLogoutClick,
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(text = "Logout")
+                Spacer(modifier = Modifier.height(4.dp))
+
+                Text(
+                    text = username,
+                    style = MaterialTheme.typography.titleMedium
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                FilledTonalButton(
+                    onClick = onBackToListClick,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "Tornar a la llista")
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                OutlinedButton(
+                    onClick = onLogoutClick,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "Tancar sessio")
+                }
             }
         }
 
@@ -173,7 +189,7 @@ fun AddTrackScreen(
             if (uiState.isSaving) {
                 CircularProgressIndicator(
                     modifier = Modifier
-                        .height(18.dp)
+                        .size(18.dp)
                         .padding(end = 8.dp),
                     strokeWidth = 2.dp
                 )

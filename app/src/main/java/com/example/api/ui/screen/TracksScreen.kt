@@ -15,11 +15,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -43,38 +47,64 @@ fun TracksScreen(
     ) {
         Spacer(modifier = Modifier.height(12.dp))
 
-        Text(
-            text = "Usuari: $username",
-            style = MaterialTheme.typography.bodyMedium
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Row(
+        Surface(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            shape = RoundedCornerShape(24.dp),
+            tonalElevation = 2.dp
         ) {
-            Text(
-                text = "Primeres cancons",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold
-            )
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(
+                    text = "Usuari",
+                    style = MaterialTheme.typography.labelMedium
+                )
 
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Button(onClick = onOpenAddTrack) {
-                    Text(text = "Afegir")
+                Spacer(modifier = Modifier.height(4.dp))
+
+                Text(
+                    text = username,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Button(
+                        onClick = onOpenAddTrack,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(text = "Afegir")
+                    }
+
+                    FilledTonalButton(
+                        onClick = onReload,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(text = "Recarrega")
+                    }
                 }
 
-                Button(onClick = onReload) {
-                    Text(text = "Recarrega")
-                }
+                Spacer(modifier = Modifier.height(8.dp))
 
-                Button(onClick = onLogout) {
-                    Text(text = "Logout")
+                OutlinedButton(
+                    onClick = onLogout,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "Tancar sessio")
                 }
             }
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "Primeres cancons",
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.SemiBold
+        )
 
         if (error != null) {
             Spacer(modifier = Modifier.height(12.dp))
