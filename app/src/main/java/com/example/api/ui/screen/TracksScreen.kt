@@ -32,6 +32,7 @@ fun TracksScreen(
     isLoading: Boolean,
     error: String?,
     modifier: Modifier = Modifier,
+    onOpenAddTrack: () -> Unit,
     onReload: () -> Unit,
     onLogout: () -> Unit
 ) {
@@ -61,6 +62,10 @@ fun TracksScreen(
             )
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(onClick = onOpenAddTrack) {
+                    Text(text = "Afegir")
+                }
+
                 Button(onClick = onReload) {
                     Text(text = "Recarrega")
                 }
