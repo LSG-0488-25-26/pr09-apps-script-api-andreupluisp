@@ -17,7 +17,7 @@ interface SpotifyApiService {
         @Url url: String = BuildConfig.BASE_URL,
         @Query("action") action: String = "list",
         @Query("apiKey") apiKey: String = BuildConfig.API_KEY,
-        @Query("limit") limit: Int = 20
+        @Query("limit") limit: Int = 5000
     ): TracksResponse
 
     @POST

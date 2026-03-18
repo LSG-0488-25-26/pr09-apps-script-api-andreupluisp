@@ -7,7 +7,7 @@ import com.example.api.data.remote.ApiClient
 
 class TracksRepository {
 
-    suspend fun getTracks(limit: Int = 20): Result<List<Track>> {
+    suspend fun getTracks(limit: Int = 5000): Result<List<Track>> {
         return runCatching {
             val response = ApiClient.service.getTracks(limit = limit)
 

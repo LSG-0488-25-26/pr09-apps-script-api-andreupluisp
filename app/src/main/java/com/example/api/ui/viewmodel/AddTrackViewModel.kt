@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.api.data.repository.TracksRepository
 import com.example.api.ui.state.AddTrackUiState
+import com.example.api.util.isValidIsoDate
 import kotlinx.coroutines.launch
 
 class AddTrackViewModel : ViewModel() {
@@ -51,6 +52,8 @@ class AddTrackViewModel : ViewModel() {
         when {
             trackName.isEmpty() -> setError("Escriu el nom de la canco")
             trackArtist.isEmpty() -> setError("Escriu l'artista")
+            state.trackAlbumReleaseDate.isNotBlank() && !isValidIsoDate(state.trackAlbumReleaseDate.trim()) ->
+                setError("La data ha de tenir format YYYY-MM-DD")
             else -> {
                 viewModelScope.launch {
                     _uiState.value = state.copy(

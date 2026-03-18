@@ -2,10 +2,17 @@ package com.example.api.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val SpotifyGreen = Color(0xFF1DB954)
+val SpotifyGreenDark = Color(0xFF169C46)
+val SpotifyGreenSoft = Color(0xFFD7F5E1)
+val SpotifyMintBackground = Color(0xFFF4FBF6)
+val SpotifySurface = Color(0xFFFFFFFF)
+val SpotifySurfaceMuted = Color(0xFFEAF5EE)
+val SpotifyOutline = Color(0xFFB4D5BF)
+val SpotifyText = Color(0xFF121714)
+val SpotifyTextMuted = Color(0xFF536057)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val SpotifyDarkBackground = Color(0xFF0F1411)
+val SpotifyDarkSurface = Color(0xFF18211B)
+val SpotifyDarkSurfaceMuted = Color(0xFF213128)
+val SpotifyDarkText = Color(0xFFEAF5EE)

@@ -2,7 +2,6 @@ package com.example.api.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,8 +15,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,20 +48,22 @@ fun AddTrackScreen(
     ) {
         Surface(
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(24.dp),
-            tonalElevation = 2.dp
+            shape = RoundedCornerShape(28.dp),
+            color = MaterialTheme.colorScheme.primaryContainer
         ) {
-            Column(modifier = Modifier.padding(16.dp)) {
+            Column(modifier = Modifier.padding(18.dp)) {
                 Text(
-                    text = "Usuari",
-                    style = MaterialTheme.typography.labelMedium
+                    text = "Afegir track",
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
 
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(6.dp))
 
                 Text(
-                    text = username,
-                    style = MaterialTheme.typography.titleMedium
+                    text = "Usuari: $username",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -88,79 +89,54 @@ fun AddTrackScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Afegir canco",
-            style = MaterialTheme.typography.titleLarge
+            text = "Omple les dades basiques de la nova canco",
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(
+        FormField(
             value = uiState.trackName,
             onValueChange = onTrackNameChange,
-            label = { Text("Nom de la canco") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            label = "Nom de la canco"
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        OutlinedTextField(
+        FormField(
             value = uiState.trackArtist,
             onValueChange = onTrackArtistChange,
-            label = { Text("Artista") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            label = "Artista"
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        OutlinedTextField(
+        FormField(
             value = uiState.playlistGenre,
             onValueChange = onPlaylistGenreChange,
-            label = { Text("Genere") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            label = "Genere"
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        OutlinedTextField(
+        FormField(
             value = uiState.trackAlbumReleaseDate,
             onValueChange = onTrackAlbumReleaseDateChange,
-            label = { Text("Data album") },
-            placeholder = { Text("2026-03-18") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            label = "Data album",
+            supportingText = "Format YYYY-MM-DD"
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        OutlinedTextField(
+        FormField(
             value = uiState.trackAlbumName,
             onValueChange = onTrackAlbumNameChange,
-            label = { Text("Nom album") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            label = "Nom album"
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        OutlinedTextField(
+        FormField(
             value = uiState.trackPopularity,
             onValueChange = onTrackPopularityChange,
-            label = { Text("Popularitat") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            label = "Popularitat"
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        OutlinedTextField(
+        FormField(
             value = uiState.uri,
             onValueChange = onUriChange,
-            label = { Text("Uri spotify") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            label = "Uri spotify"
         )
 
         uiState.errorMessage?.let { message ->
@@ -199,4 +175,27 @@ fun AddTrackScreen(
 
         Spacer(modifier = Modifier.height(24.dp))
     }
+}
+
+@Composable
+private fun FormField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+    supportingText: String? = null
+) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        label = { Text(label) },
+        supportingText = {
+            if (supportingText != null) {
+                Text(text = supportingText)
+            }
+        },
+        modifier = Modifier.fillMaxWidth(),
+        singleLine = true
+    )
+
+    Spacer(modifier = Modifier.height(12.dp))
 }

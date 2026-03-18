@@ -77,18 +77,18 @@ function doPost(e) {
 
 function listTracks_(e) {
   const items = getAllTracks_();
-  const limit = Number(e.parameter.limit || 20);
+  const limit = Number(e.parameter.limit || 0);
 
   return jsonResponse_({
     ok: true,
     total: items.length,
-    items: items.slice(0, limit)
+    items: limit > 0 ? items.slice(0, limit) : items
   });
 }
 
 function searchTracks_(e) {
   const text = (e.parameter.text || '').toLowerCase().trim();
-  const limit = Number(e.parameter.limit || 20);
+  const limit = Number(e.parameter.limit || 0);
 
   if (!text) {
     return jsonResponse_({ ok: false, error: 'falta text' });
@@ -103,7 +103,7 @@ function searchTracks_(e) {
   return jsonResponse_({
     ok: true,
     total: items.length,
-    items: items.slice(0, limit)
+    items: limit > 0 ? items.slice(0, limit) : items
   });
 }
 

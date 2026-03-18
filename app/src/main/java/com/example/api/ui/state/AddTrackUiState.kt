@@ -1,10 +1,12 @@
 package com.example.api.ui.state
 
+import com.example.api.util.todayIsoDate
+
 data class AddTrackUiState(
     val trackName: String = "",
     val trackArtist: String = "",
     val playlistGenre: String = "",
-    val trackAlbumReleaseDate: String = "",
+    val trackAlbumReleaseDate: String = todayIsoDate(),
     val trackAlbumName: String = "",
     val trackPopularity: String = "",
     val uri: String = "",
