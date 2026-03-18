@@ -1,8 +1,10 @@
 *.iml
 .gradle
 /.gradle-user-home
+/.gradle-user-home*
 /.idea
 /local.properties
+/secrets.properties
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
