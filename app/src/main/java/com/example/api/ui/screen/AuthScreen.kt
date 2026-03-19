@@ -7,15 +7,25 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.api.ui.state.AuthUiState
 
@@ -31,6 +41,9 @@ fun AuthScreen(
     onShowLoginClick: () -> Unit,
     onShowRegisterClick: () -> Unit
 ) {
+    // Estado local para controlar si la contraseña es visible o no
+    var passwordVisible by remember { mutableStateOf(false) }
+
     // Validacion de requisitos de contraseña: 3 letras, 2 numeros, 1 especial
     val isPasswordValid = if (uiState.isRegisterMode) {
         val letters = uiState.password.count { it.isLetter() }
@@ -80,20 +93,28 @@ fun AuthScreen(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Campo para introducir la contraseña con ayuda visual de requisitos
+        // Campo para introducir la contraseña con icono para mostrar/ocultar
         OutlinedTextField(
             value = uiState.password,
             onValueChange = onPasswordChange,
             label = { Text("Contrasenya") },
             modifier = Modifier.fillMaxWidth(),
-            visualTransformation = PasswordVisualTransformation(),
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
+                val description = if (passwordVisible) "Ocultar contrasenya" else "Mostrar contrasenya"
+
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(imageVector = image, contentDescription = description)
+                }
+            },
             singleLine = true,
             supportingText = if (uiState.isRegisterMode) {
-                { Text("Requerit: 3 lletres, 2 n\u00FAmeros i 1 s\u00EDmbol") }
+                { Text("Requerit: 3 lletres, 2 números i 1 símbol") }
             } else null
         )
 
-        // Campo para confirmar contraseña, solo visible en modo registro
+        // Campo para confirmar contraseña con el mismo control de visibilidad
         if (uiState.isRegisterMode) {
             Spacer(modifier = Modifier.height(12.dp))
 
@@ -102,7 +123,15 @@ fun AuthScreen(
                 onValueChange = onConfirmPasswordChange,
                 label = { Text("Repeteix la contrasenya") },
                 modifier = Modifier.fillMaxWidth(),
-                visualTransformation = PasswordVisualTransformation(),
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                trailingIcon = {
+                    val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
+                    val description = if (passwordVisible) "Ocultar contrasenya" else "Mostrar contrasenya"
+
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(imageVector = image, contentDescription = description)
+                    }
+                },
                 singleLine = true,
                 isError = uiState.password != uiState.confirmPassword && uiState.confirmPassword.isNotEmpty()
             )
