@@ -31,6 +31,21 @@ fun AuthScreen(
     onShowLoginClick: () -> Unit,
     onShowRegisterClick: () -> Unit
 ) {
+    // Validacion de requisitos de contraseña: 3 letras, 2 numeros, 1 especial
+    val isPasswordValid = if (uiState.isRegisterMode) {
+        val letters = uiState.password.count { it.isLetter() }
+        val digits = uiState.password.count { it.isDigit() }
+        val specials = uiState.password.count { !it.isLetterOrDigit() && !it.isWhitespace() }
+        letters >= 3 && digits >= 2 && specials >= 1
+    } else {
+        uiState.password.isNotEmpty()
+    }
+
+    // Comprobacion general para habilitar el boton de accion
+    val canSubmit = uiState.username.isNotBlank() && 
+            isPasswordValid && 
+            (!uiState.isRegisterMode || (uiState.password == uiState.confirmPassword && uiState.confirmPassword.isNotEmpty()))
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -65,14 +80,17 @@ fun AuthScreen(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Campo para introducir la contraseña
+        // Campo para introducir la contraseña con ayuda visual de requisitos
         OutlinedTextField(
             value = uiState.password,
             onValueChange = onPasswordChange,
             label = { Text("Contrasenya") },
             modifier = Modifier.fillMaxWidth(),
             visualTransformation = PasswordVisualTransformation(),
-            singleLine = true
+            singleLine = true,
+            supportingText = if (uiState.isRegisterMode) {
+                { Text("Requerit: 3 lletres, 2 n\u00FAmeros i 1 s\u00EDmbol") }
+            } else null
         )
 
         // Campo para confirmar contraseña, solo visible en modo registro
@@ -85,7 +103,8 @@ fun AuthScreen(
                 label = { Text("Repeteix la contrasenya") },
                 modifier = Modifier.fillMaxWidth(),
                 visualTransformation = PasswordVisualTransformation(),
-                singleLine = true
+                singleLine = true,
+                isError = uiState.password != uiState.confirmPassword && uiState.confirmPassword.isNotEmpty()
             )
         }
 
@@ -114,7 +133,8 @@ fun AuthScreen(
         // Boton principal de accion (Entrar o Registrar)
         Button(
             onClick = if (uiState.isRegisterMode) onRegisterClick else onLoginClick,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            enabled = canSubmit
         ) {
             Text(text = if (uiState.isRegisterMode) "Registrar" else "Entrar")
         }
