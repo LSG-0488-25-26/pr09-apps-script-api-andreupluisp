@@ -1,6 +1,8 @@
 # PR09 - Apps Script API
 
-App Android amb Jetpack Compose que consumeix una API feta amb Google Apps Script sobre un Google Sheets amb dades de tracks de Spotify.
+Aplicació Android desenvolupada amb Jetpack Compose que consumeix una API creada amb Google Apps Script sobre un Google Sheets amb dades de tracks de Spotify.
+Projecte realitzat per a l’assignatura 0488: Desenvolupament d’interfícies (DAM2A).
+Desenvolupat per Lluis i Andreu.
 
 ## Dataset
 
@@ -68,8 +70,3 @@ API_KEY=spotify123
 ## Video demo
 
 https://youtu.be/nBp1q518s6c
-
-## Notes finals
-
-- El Google Sheets s'ha de compartir amb `raimon.izard@itb.cat`
-- Si es modifica l'Apps Script, cal tornar a desplegar la web app
