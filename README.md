@@ -37,13 +37,6 @@ BASE_URL=URL_DEL_DEPLOY_DE_APPS_SCRIPT
 API_KEY=API_KEY
 ```
 
-## Estructura principal
-
-- `app/src/main/java/com/example/api/data`
-- `app/src/main/java/com/example/api/ui`
-- `app/src/main/java/com/example/api/util`
-- `apps-script/Code.gs`
-
 ## Captures
 
 - Pantalla de registre
