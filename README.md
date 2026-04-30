@@ -34,7 +34,7 @@ Cal crear un fitxer `secrets.properties` a la arrel del projecte amb:
 
 ```properties
 BASE_URL=URL_DEL_DEPLOY_DE_APPS_SCRIPT
-API_KEY=spotify123
+API_KEY=API_KEY
 ```
 
 ## Estructura principal
